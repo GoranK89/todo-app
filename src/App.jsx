@@ -1,5 +1,14 @@
+import Header from "./components/Header";
+import TodoApp from "./components/TodoApp";
+
 function App() {
-  return <h1>app</h1>;
+  return (
+    <main>
+      <Header />
+      <TodoApp />
+      <section className="section-1" />
+    </main>
+  );
 }
 
 export default App;
