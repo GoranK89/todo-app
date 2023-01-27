@@ -28,10 +28,10 @@
   &__tasks {
     background-color: $color-very-dark-desaturated-blue;
 
-    .tasks-box {
+    .tasks {
       color: $color-light-grayish-blue;
 
-      .task-item {
+      &__item {
         padding: 1rem;
         border-bottom: 1px solid $color-very-dark-grayish-blue;
       }
