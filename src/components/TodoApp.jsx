@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addTask } from "../store/tasksSlice";
+import { addTask, removeTask } from "../store/tasksSlice";
 
 import IconMoon from "/images/icon-moon.svg";
 import IconSun from "/images/icon-sun.svg";
@@ -10,21 +10,30 @@ export const TodoApp = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
   const dispatch = useDispatch();
 
-  const renderTasks = tasks.map((task, i) => (
-    <li className="tasks__item" key={i}>
-      <div className="tasks__item-checkbox"></div>
-      {task}
-      <img className="tasks__item-icon--cross" src={IconCross} />
-    </li>
-  ));
-  const numOfTasks = tasks.length;
-
   const addTaskHandler = (event) => {
     if (event.key === "Enter" && event.target.value) {
       dispatch(addTask(event.target.value));
       event.target.value = "";
     }
   };
+
+  const deleteTaskHandler = (event) => {
+    dispatch(removeTask(event.target.id));
+  };
+
+  const renderTasks = tasks.map((task, i) => (
+    <li className="tasks__item" key={i}>
+      <div className="tasks__item-checkbox"></div>
+      {task}
+      <img
+        className="tasks__item-icon--cross"
+        src={IconCross}
+        onClick={deleteTaskHandler}
+        id={i}
+      />
+    </li>
+  ));
+  const numOfTasks = tasks.length;
 
   return (
     <div className="todo-app">
