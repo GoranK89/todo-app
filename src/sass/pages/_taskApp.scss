@@ -32,8 +32,27 @@
       color: $color-light-grayish-blue;
 
       &__item {
+        cursor: pointer;
+        display: flex;
+        gap: 2rem;
         padding: 1rem;
         border-bottom: 1px solid $color-very-dark-grayish-blue;
+
+        &-checkbox {
+          background: $color-check-background;
+          height: 20px;
+          width: 20px;
+          border-radius: 50%;
+        }
+
+        &-icon--cross {
+          margin-left: auto;
+
+          &:hover {
+            filter: invert(95%) sepia(7%) saturate(712%) hue-rotate(195deg)
+              brightness(100%) contrast(90%);
+          }
+        }
       }
     }
   }
@@ -45,5 +64,22 @@
     gap: 1rem;
     font-size: 1.4rem;
     color: $color-dark-grayish-blue;
+
+    &__task-filter {
+      display: flex;
+      gap: 1rem;
+
+      .filter:hover {
+        color: $color-light-grayish-blue-hover;
+      }
+    }
+
+    &__clear {
+      text-transform: capitalize;
+
+      &:hover {
+        color: $color-light-grayish-blue-hover;
+      }
+    }
   }
 }

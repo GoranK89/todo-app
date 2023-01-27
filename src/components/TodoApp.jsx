@@ -3,17 +3,26 @@ import { addTask } from "../store/tasksSlice";
 
 import IconMoon from "/images/icon-moon.svg";
 import IconSun from "/images/icon-sun.svg";
+import IconCheck from "/images/icon-check.svg";
+import IconCross from "/images/icon-cross.svg";
 
 export const TodoApp = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
   const dispatch = useDispatch();
 
-  const renderTasks = tasks.map((task, i) => <li key={i}>{task}</li>);
+  const renderTasks = tasks.map((task, i) => (
+    <li className="tasks__item" key={i}>
+      <div className="tasks__item-checkbox"></div>
+      {task}
+      <img className="tasks__item-icon--cross" src={IconCross} />
+    </li>
+  ));
   const numOfTasks = tasks.length;
 
   const addTaskHandler = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && event.target.value) {
       dispatch(addTask(event.target.value));
+      event.target.value = "";
     }
   };
 
@@ -33,9 +42,19 @@ export const TodoApp = () => {
       <div className="todo-app__tasks">
         <ul className="tasks">{renderTasks}</ul>
         <div className="controls">
-          <div className="controls-task-count">{numOfTasks} items left</div>
-          <div className="controls-task-filter">all active completed</div>
-          <a href="#" className="controls-clear">
+          <div className="controls__task-count">{numOfTasks} items left</div>
+          <div className="controls__task-filter">
+            <a href="#" className="filter">
+              All
+            </a>
+            <a href="#" className="filter">
+              Active
+            </a>
+            <a href="#" className="filter">
+              Completed
+            </a>
+          </div>
+          <a href="#" className="controls__clear">
             Clear completed
           </a>
         </div>
