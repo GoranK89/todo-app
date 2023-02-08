@@ -1,6 +1,5 @@
 .header {
   position: relative;
-
   background-image: url("images/bg-desktop-dark.jpg");
   height: 40vh;
   background-size: cover;
@@ -31,6 +30,10 @@
 
       .theme-icon {
         width: 3.5rem;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
 

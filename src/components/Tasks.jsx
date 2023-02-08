@@ -8,6 +8,7 @@ import IconCross from "/images/icon-cross.svg";
 const Tasks = () => {
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.tasks.tasks);
+  const darkTheme = useSelector((state) => state.theme.dark);
 
   const deleteTaskHandler = (event) => {
     dispatch(removeTask(event.target.id));
@@ -29,7 +30,9 @@ const Tasks = () => {
   const numOfTasks = tasks.length;
 
   return (
-    <section className="section-tasks">
+    <section
+      className={darkTheme ? "section-tasks" : "section-tasks bgc--light"}
+    >
       <div className="section-tasks__tasks-box width-80">
         <ul className="tasks">{renderTasks}</ul>
         <div className="controls">
