@@ -1,21 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
-import { addTask, removeTask } from "../store/tasksSlice";
+import { useSelector } from "react-redux";
+import { removeTask } from "../store/tasksSlice";
+import { useDispatch } from "react-redux";
 
-import IconMoon from "/images/icon-moon.svg";
-import IconSun from "/images/icon-sun.svg";
 import IconCheck from "/images/icon-check.svg";
 import IconCross from "/images/icon-cross.svg";
 
-export const TodoApp = () => {
-  const tasks = useSelector((state) => state.tasks.tasks);
+const Tasks = () => {
   const dispatch = useDispatch();
-
-  const addTaskHandler = (event) => {
-    if (event.key === "Enter" && event.target.value) {
-      dispatch(addTask(event.target.value));
-      event.target.value = "";
-    }
-  };
+  const tasks = useSelector((state) => state.tasks.tasks);
 
   const deleteTaskHandler = (event) => {
     dispatch(removeTask(event.target.id));
@@ -33,22 +25,12 @@ export const TodoApp = () => {
       />
     </li>
   ));
+
   const numOfTasks = tasks.length;
 
   return (
-    <div className="todo-app">
-      <div className="todo-app__title-box">
-        <h1 className="heading">Todo</h1>
-        <img src={IconSun} className="theme-icon" alt="theme switcher icon" />
-      </div>
-
-      <input
-        className="todo-app__input"
-        placeholder="Create a new todo..."
-        onKeyDown={addTaskHandler}
-      />
-
-      <div className="todo-app__tasks">
+    <section className="section-tasks">
+      <div className="section-tasks__tasks-box width-80">
         <ul className="tasks">{renderTasks}</ul>
         <div className="controls">
           <div className="controls__task-count">{numOfTasks} items left</div>
@@ -68,8 +50,8 @@ export const TodoApp = () => {
           </a>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default TodoApp;
+export default Tasks;

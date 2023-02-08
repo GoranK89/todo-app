@@ -1,8 +1,7 @@
 @import "abstract/variables";
 
 @import "base/base";
+@import "base/utilities";
 
 @import "layout/header";
-@import "layout/section-1";
-
-@import "pages/taskApp";
+@import "layout/tasks";

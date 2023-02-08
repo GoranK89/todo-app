@@ -1,31 +1,14 @@
-.todo-app {
-  position: absolute;
-  top: 25rem;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
+.section-tasks {
+  position: relative;
+  height: 60vh;
   font-size: 1.8rem;
+  background-color: $color-very-dark-blue;
 
-  &__title-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: $color-very-light-gray;
-    margin-bottom: 3rem;
-
-    .heading {
-      text-transform: uppercase;
-      letter-spacing: 1rem;
-    }
-  }
-
-  &__input {
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  &__tasks {
+  &__tasks-box {
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: $color-very-dark-desaturated-blue;
 
     .tasks {
@@ -35,7 +18,7 @@
         cursor: pointer;
         display: flex;
         gap: 2rem;
-        padding: 1rem;
+        padding: 2rem;
         border-bottom: 1px solid $color-very-dark-grayish-blue;
 
         &-checkbox {

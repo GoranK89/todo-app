@@ -1,12 +1,11 @@
 import Header from "./components/Header";
-import TodoApp from "./components/TodoApp";
+import Tasks from "./components/Tasks";
 
 function App() {
   return (
     <main>
       <Header />
-      <TodoApp />
-      <section className="section-1" />
+      <Tasks />
     </main>
   );
 }
