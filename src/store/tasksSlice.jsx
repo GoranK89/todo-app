@@ -3,7 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const tasksSlice = createSlice({
   name: "task",
   initialState: {
-    tasks: ["Add a task!"],
+    tasks: [
+      {
+        task: "Add a task",
+        completed: false,
+      },
+    ],
   },
   reducers: {
     addTask: (state, action) => {
@@ -14,8 +19,12 @@ const tasksSlice = createSlice({
         (item) => item !== state.tasks[action.payload]
       );
     },
+    markTaskDone: (state, action) => {
+      if (state.tasks[action.payload].completed) return;
+      state.tasks[action.payload].completed = true;
+    },
   },
 });
 
-export const { addTask, removeTask } = tasksSlice.actions;
+export const { addTask, removeTask, markTaskDone } = tasksSlice.actions;
 export default tasksSlice.reducer;

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { removeTask } from "../store/tasksSlice";
+import { removeTask, markTaskDone } from "../store/tasksSlice";
 import { useDispatch } from "react-redux";
 
 import IconCheck from "/images/icon-check.svg";
@@ -14,10 +14,29 @@ const Tasks = () => {
     dispatch(removeTask(event.target.id));
   };
 
+  const checkBoxHandler = (event) => {
+    dispatch(markTaskDone(event.target.id));
+    // change the task text
+  };
+
+  const tasksSectionTheme = darkTheme
+    ? "section-tasks"
+    : "section-tasks bgc--light";
+
   const renderTasks = tasks.map((task, i) => (
     <li className="tasks__item" key={i}>
-      <div className="tasks__item-checkbox"></div>
-      {task}
+      <div
+        className={
+          !task.completed ? "tasks__item-checkbox" : "tasks__item-checkbox-done"
+        }
+        onClick={checkBoxHandler}
+        id={i}
+      >
+        {task.completed && (
+          <img src={IconCheck} alt="checkmark icon" className="img-checkmark" />
+        )}
+      </div>
+      {task.task}
       <img
         className="tasks__item-icon--cross"
         src={IconCross}
@@ -30,9 +49,7 @@ const Tasks = () => {
   const numOfTasks = tasks.length;
 
   return (
-    <section
-      className={darkTheme ? "section-tasks" : "section-tasks bgc--light"}
-    >
+    <section className={tasksSectionTheme}>
       <div className="section-tasks__tasks-box width-80">
         <ul className="tasks">{renderTasks}</ul>
         <div className="controls">

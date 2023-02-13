@@ -17,17 +17,28 @@
       &__item {
         cursor: pointer;
         display: flex;
+        align-items: center;
         gap: 2rem;
         padding: 2rem;
         border-bottom: 1px solid $color-very-dark-grayish-blue;
 
         &-checkbox {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
           position: relative;
           border: 1px solid $color-dark-grayish-blue;
-          height: 20px;
-          width: 20px;
+          height: 24px;
+          width: 24px;
           border-radius: 50%;
           background-color: $color-very-dark-desaturated-blue;
+
+          &-done {
+            @extend .tasks__item-checkbox;
+            border: none;
+            background: $color-check-background;
+          }
 
           &:hover::after {
             content: "";
