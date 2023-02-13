@@ -23,8 +23,22 @@ const tasksSlice = createSlice({
       if (state.tasks[action.payload].completed) return;
       state.tasks[action.payload].completed = true;
     },
+    showAllTasks: (state) => {},
+    showActiveTasks: (state) => {},
+    showCompletedTasks: (state) => {},
+    clearCompletedTasks: (state) => {
+      state.tasks = state.tasks.filter((item) => item.completed !== true);
+    },
   },
 });
 
-export const { addTask, removeTask, markTaskDone } = tasksSlice.actions;
+export const {
+  addTask,
+  removeTask,
+  markTaskDone,
+  showAllTasks,
+  showActiveTasks,
+  showCompletedTasks,
+  clearCompletedTasks,
+} = tasksSlice.actions;
 export default tasksSlice.reducer;

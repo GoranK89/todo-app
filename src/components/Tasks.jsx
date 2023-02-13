@@ -1,6 +1,7 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { removeTask, markTaskDone } from "../store/tasksSlice";
-import { useDispatch } from "react-redux";
+
+import TasksControlls from "./TasksControlls";
 
 import IconCheck from "/images/icon-check.svg";
 import IconCross from "/images/icon-cross.svg";
@@ -16,7 +17,6 @@ const Tasks = () => {
 
   const checkBoxHandler = (event) => {
     dispatch(markTaskDone(event.target.id));
-    // change the task text
   };
 
   const tasksSectionTheme = darkTheme
@@ -48,29 +48,11 @@ const Tasks = () => {
     </li>
   ));
 
-  const numOfTasks = tasks.length;
-
   return (
     <section className={tasksSectionTheme}>
       <div className="section-tasks__tasks-box width-80">
         <ul className="tasks">{renderTasks}</ul>
-        <div className="controls">
-          <div className="controls__task-count">{numOfTasks} items left</div>
-          <div className="controls__task-filter">
-            <a href="#" className="filter">
-              All
-            </a>
-            <a href="#" className="filter">
-              Active
-            </a>
-            <a href="#" className="filter">
-              Completed
-            </a>
-          </div>
-          <a href="#" className="controls__clear">
-            Clear completed
-          </a>
-        </div>
+        <TasksControlls />
       </div>
     </section>
   );
