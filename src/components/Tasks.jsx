@@ -36,7 +36,9 @@ const Tasks = () => {
           <img src={IconCheck} alt="checkmark icon" className="img-checkmark" />
         )}
       </div>
-      {task.task}
+      <span className={!task.completed ? "" : "task-text--done"}>
+        {task.task}
+      </span>
       <img
         className="tasks__item-icon--cross"
         src={IconCross}
