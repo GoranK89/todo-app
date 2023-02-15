@@ -82,6 +82,12 @@
       display: flex;
       gap: 1rem;
 
+      .filter {
+        &--active {
+          color: $color-bright-blue;
+        }
+      }
+
       .filter:hover {
         color: $color-light-grayish-blue-hover;
       }

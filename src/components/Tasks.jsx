@@ -8,7 +8,21 @@ import IconCross from "/images/icon-cross.svg";
 
 const Tasks = () => {
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.tasks.tasks);
+
+  // FILTERED TASKS
+  const allTasks = useSelector((state) => state.tasks.allTasks);
+  const activeTasks = useSelector((state) => state.tasks.activeTasks);
+  const completedTasks = useSelector((state) => state.tasks.completedTasks);
+
+  // ACTIVE FILTERS
+  const allTasksActive = useSelector((state) => state.tasks.allTasksActive);
+  const activeTasksActive = useSelector(
+    (state) => state.tasks.activeTasksActive
+  );
+  const completedTasksActive = useSelector(
+    (state) => state.tasks.completedTasksActive
+  );
+
   const darkTheme = useSelector((state) => state.theme.dark);
 
   const deleteTaskHandler = (event) => {
@@ -19,11 +33,17 @@ const Tasks = () => {
     dispatch(markTaskDone(event.target.id));
   };
 
+  const testF = () => {
+    if (allTasksActive) return allTasks;
+    if (activeTasksActive) return activeTasks;
+    if (completedTasksActive) return completedTasks;
+  };
+
   const tasksSectionTheme = darkTheme
     ? "section-tasks"
     : "section-tasks bgc--light";
 
-  const renderTasks = tasks.map((task, i) => (
+  const renderTasks = testF().map((task, i) => (
     <li className="tasks__item" key={i}>
       <div
         className={

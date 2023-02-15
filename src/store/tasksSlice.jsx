@@ -3,31 +3,54 @@ import { createSlice } from "@reduxjs/toolkit";
 const tasksSlice = createSlice({
   name: "task",
   initialState: {
-    tasks: [
+    allTasks: [
       {
         task: "Add a task",
         completed: false,
       },
     ],
+    activeTasks: [{}],
+    completedTasks: [{}],
+    allTasksActive: true,
+    activeTasksActive: false,
+    completedTasksActive: false,
   },
   reducers: {
     addTask: (state, action) => {
-      state.tasks.push(action.payload);
+      state.allTasks.push(action.payload);
     },
     removeTask: (state, action) => {
-      state.tasks = state.tasks.filter(
-        (item) => item !== state.tasks[action.payload]
+      state.allTasks = state.allTasks.filter(
+        (item) => item !== state.allTasks[action.payload]
       );
     },
     markTaskDone: (state, action) => {
-      if (state.tasks[action.payload].completed) return;
-      state.tasks[action.payload].completed = true;
+      state.allTasks[action.payload].completed = true;
     },
-    showAllTasks: (state) => {},
-    showActiveTasks: (state) => {},
-    showCompletedTasks: (state) => {},
+    showAllTasks: (state) => {
+      state.allTasks = state.allTasks;
+      state.allTasksActive = !state.allTasksActive;
+      state.activeTasksActive = false;
+      state.completedTasksActive = false;
+    },
+    showActiveTasks: (state) => {
+      state.activeTasks = state.allTasks.filter(
+        (item) => item.completed !== true
+      );
+      state.activeTasksActive = !state.activeTasksActive;
+      state.allTasksActive = false;
+      state.completedTasksActive = false;
+    },
+    showCompletedTasks: (state) => {
+      state.completedTasks = state.allTasks.filter(
+        (item) => item.completed === true
+      );
+      state.completedTasksActive = !state.completedTasksActive;
+      state.allTasksActive = false;
+      state.activeTasksActive = false;
+    },
     clearCompletedTasks: (state) => {
-      state.tasks = state.tasks.filter((item) => item.completed !== true);
+      state.allTasks = state.allTasks.filter((item) => item.completed !== true);
     },
   },
 });
