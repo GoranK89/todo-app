@@ -26,3 +26,13 @@
   border: 1px solid $color-very-light-grayish-blue;
   background-color: #fff;
 }
+
+.controls {
+  .filter--light:hover {
+    color: $color-very-dark-blue;
+  }
+
+  &__clear--light:hover {
+    color: $color-very-dark-blue;
+  }
+}

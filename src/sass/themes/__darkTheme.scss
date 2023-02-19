@@ -27,3 +27,13 @@
   border: 1px solid $color-dark-grayish-blue;
   background-color: $color-very-dark-desaturated-blue;
 }
+
+.controls {
+  .filter--dark:hover {
+    color: $color-very-light-gray;
+  }
+
+  &__clear--dark:hover {
+    color: $color-very-light-gray;
+  }
+}

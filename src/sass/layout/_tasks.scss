@@ -83,18 +83,10 @@
           color: $color-bright-blue;
         }
       }
-
-      .filter:hover {
-        color: $color-light-grayish-blue-hover;
-      }
     }
 
     &__clear {
       text-transform: capitalize;
-
-      &:hover {
-        color: $color-light-grayish-blue-hover;
-      }
     }
   }
 }

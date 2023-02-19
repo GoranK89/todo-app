@@ -10,6 +10,7 @@ import { clearCompletedTasks } from "../store/tasksSlice";
 const TasksControlls = () => {
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.filters);
+  const darkTheme = useSelector((state) => state.theme.dark);
 
   const activeTasks = useSelector((state) =>
     state.tasks.filter((item) => !item.completed)
@@ -34,9 +35,21 @@ const TasksControlls = () => {
     dispatch(clearCompletedTasks());
   };
 
-  const classFilterAll = filters.all ? "filter--active" : "filter";
-  const classFilterActive = filters.active ? "filter--active" : "filter";
-  const classFilterCompleted = filters.completed ? "filter--active" : "filter";
+  const classFilterAll = filters.all
+    ? "filter--active"
+    : `filter--${darkTheme ? "dark" : "light"}`;
+
+  const classFilterActive = filters.active
+    ? "filter--active"
+    : `filter${darkTheme ? "--dark" : "--light"}`;
+
+  const classFilterCompleted = filters.completed
+    ? "filter--active"
+    : `filter${darkTheme ? "--dark" : "--light"}`;
+
+  const classClearAll = darkTheme
+    ? "controls__clear--dark"
+    : "controls__clear--light";
 
   return (
     <div className="controls">
@@ -54,7 +67,7 @@ const TasksControlls = () => {
           Completed
         </a>
       </div>
-      <a href="#" className="controls__clear" onClick={clearCompletedHandler}>
+      <a href="#" className={classClearAll} onClick={clearCompletedHandler}>
         Clear completed
       </a>
     </div>
