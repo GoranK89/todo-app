@@ -1,30 +1,32 @@
 import { useSelector, useDispatch } from "react-redux";
-
 import {
   showAllTasks,
-  showActiveTasks,
   showCompletedTasks,
-  clearCompletedTasks,
-} from "../store/tasksSlice";
+  showActiveTasks,
+  resetOtherFilters,
+} from "../store/filtersSlice";
+import { clearCompletedTasks } from "../store/tasksSlice";
 
 const TasksControlls = () => {
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.tasks.allTasks);
-  const allTasksActive = useSelector((state) => state.tasks.allTasksActive);
-  const activeTasksActive = useSelector(
-    (state) => state.tasks.activeTasksActive
-  );
-  const completedTasksActive = useSelector(
-    (state) => state.tasks.completedTasksActive
+  const filters = useSelector((state) => state.filters);
+
+  const activeTasks = useSelector((state) =>
+    state.tasks.filter((item) => !item.completed)
   );
 
-  const allTasksHandler = () => {
+  const allHandler = () => {
+    dispatch(resetOtherFilters());
     dispatch(showAllTasks());
   };
-  const activeTasksHandler = () => {
+
+  const activeHandler = () => {
+    dispatch(resetOtherFilters());
     dispatch(showActiveTasks());
   };
-  const completedTasksHandler = () => {
+
+  const completedHandler = () => {
+    dispatch(resetOtherFilters());
     dispatch(showCompletedTasks());
   };
 
@@ -32,32 +34,23 @@ const TasksControlls = () => {
     dispatch(clearCompletedTasks());
   };
 
-  const filterClass = (clickedFilter) =>
-    clickedFilter ? "filter filter--active" : "filter";
+  const classFilterAll = filters.all ? "filter--active" : "filter";
+  const classFilterActive = filters.active ? "filter--active" : "filter";
+  const classFilterCompleted = filters.completed ? "filter--active" : "filter";
 
   return (
     <div className="controls">
-      <div className="controls__task-count">{tasks.length} items left</div>
+      <div className="controls__task-count">
+        {activeTasks.length} items left
+      </div>
       <div className="controls__task-filter">
-        <a
-          href="#"
-          className={filterClass(allTasksActive)}
-          onClick={allTasksHandler}
-        >
+        <a href="#" className={classFilterAll} onClick={allHandler}>
           All
         </a>
-        <a
-          href="#"
-          className={filterClass(activeTasksActive)}
-          onClick={activeTasksHandler}
-        >
+        <a href="#" className={classFilterActive} onClick={activeHandler}>
           Active
         </a>
-        <a
-          href="#"
-          className={filterClass(completedTasksActive)}
-          onClick={completedTasksHandler}
-        >
+        <a href="#" className={classFilterCompleted} onClick={completedHandler}>
           Completed
         </a>
       </div>

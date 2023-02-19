@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { removeTask, markTaskDone } from "../store/tasksSlice";
+import { removeTask, toggleTaskDone } from "../store/tasksSlice";
 
 import TasksControlls from "./TasksControlls";
 
@@ -8,62 +8,58 @@ import IconCross from "/images/icon-cross.svg";
 
 const Tasks = () => {
   const dispatch = useDispatch();
-
-  // FILTERED TASKS
-  const allTasks = useSelector((state) => state.tasks.allTasks);
-  const activeTasks = useSelector((state) => state.tasks.activeTasks);
-  const completedTasks = useSelector((state) => state.tasks.completedTasks);
-
-  // ACTIVE FILTERS
-  const allTasksActive = useSelector((state) => state.tasks.allTasksActive);
-  const activeTasksActive = useSelector(
-    (state) => state.tasks.activeTasksActive
-  );
-  const completedTasksActive = useSelector(
-    (state) => state.tasks.completedTasksActive
-  );
-
+  const filters = useSelector((state) => state.filters);
   const darkTheme = useSelector((state) => state.theme.dark);
 
-  const deleteTaskHandler = (event) => {
-    dispatch(removeTask(event.target.id));
+  const removeTaskHandler = (event) => {
+    dispatch(removeTask(Number(event.target.id)));
   };
 
   const checkBoxHandler = (event) => {
-    dispatch(markTaskDone(event.target.id));
+    dispatch(toggleTaskDone(Number(event.target.id)));
   };
 
-  const testF = () => {
-    if (allTasksActive) return allTasks;
-    if (activeTasksActive) return activeTasks;
-    if (completedTasksActive) return completedTasks;
+  const filterTasks = () => {
+    const allTasks = useSelector((state) => state.tasks);
+
+    if (filters.all) {
+      return allTasks;
+    }
+    if (filters.active) {
+      const activeTasks = allTasks.filter((item) => !item.completed);
+      return activeTasks;
+    }
+    if (filters.completed) {
+      const completedTasks = allTasks.filter((item) => item.completed);
+      return completedTasks;
+    }
   };
 
   const tasksSectionTheme = darkTheme
     ? "section-tasks"
     : "section-tasks bgc--light";
 
-  const renderTasks = testF().map((task, i) => (
-    <li className="tasks__item" key={i}>
+  const renderTasks = filterTasks().map((task) => (
+    <li className="tasks__item" key={task.id}>
       <div
         className={
-          !task.completed ? "tasks__item-checkbox" : "tasks__item-checkbox-done"
+          task.completed ? "tasks__item-checkbox-done" : "tasks__item-checkbox"
         }
         onClick={checkBoxHandler}
-        id={i}
+        id={task.id}
       >
         {task.completed && (
           <img src={IconCheck} alt="checkmark icon" className="img-checkmark" />
         )}
       </div>
       <span className={!task.completed ? "" : "task-text--done"}>
-        {task.task}
+        {task.title}
       </span>
       <img
         className="tasks__item-icon--cross"
         src={IconCross}
-        onClick={deleteTaskHandler}
-        id={i}
+        onClick={removeTaskHandler}
+        id={task.id}
       />
     </li>
   ));

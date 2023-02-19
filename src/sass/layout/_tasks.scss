@@ -34,12 +34,6 @@
           border-radius: 50%;
           background-color: $color-very-dark-desaturated-blue;
 
-          &-done {
-            @extend .tasks__item-checkbox;
-            border: none;
-            background: $color-check-background;
-          }
-
           &:hover::after {
             content: "";
             position: absolute;
@@ -51,6 +45,16 @@
             margin: -2px;
             border-radius: inherit;
             background: $color-check-background;
+          }
+
+          &-done {
+            @extend .tasks__item-checkbox;
+            border: none;
+            background: $color-check-background;
+
+            &:hover::after {
+              margin: 2px;
+            }
           }
         }
 

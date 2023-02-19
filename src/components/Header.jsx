@@ -11,7 +11,7 @@ const Header = () => {
 
   const addTaskHandler = (event) => {
     if (event.key === "Enter" && event.target.value) {
-      dispatch(addTask({ task: event.target.value, checked: false }));
+      dispatch(addTask({ title: event.target.value }));
       event.target.value = "";
     }
   };
