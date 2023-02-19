@@ -1,16 +1,13 @@
 .header {
-  position: relative;
+  display: flex;
+  justify-content: center;
   height: 40vh;
   background-size: cover;
   background-position: top;
+  padding: 0 2rem;
 
   &__box {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 14rem;
-
+    margin-top: 10rem;
     display: flex;
     flex-direction: column;
     gap: 4rem;
@@ -43,9 +40,35 @@
       font-family: inherit;
       border: none;
       outline: none;
+      border-radius: 5px;
 
       &::placeholder {
         color: $color-dark-grayish-blue;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .header {
+    height: 30vh;
+
+    &__box {
+      margin-top: 6rem;
+
+      .heading-wrapper {
+        .heading {
+          font-size: 4rem;
+        }
+
+        .theme-icon {
+          width: 3rem;
+        }
+      }
+
+      .input {
+        padding: 2rem 1.5rem;
+        font-size: 1.8rem;
       }
     }
   }

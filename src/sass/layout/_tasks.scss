@@ -1,13 +1,15 @@
 .section-tasks {
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   height: 60vh;
   font-size: 1.8rem;
+  padding: 0 2rem;
 
   &__tasks-box {
-    position: absolute;
-    top: -10%;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-top: -5rem;
+    border-radius: 5px;
+    box-shadow: 0 5px 20px -4px rgba(0, 0, 0, 0.493);
 
     .tasks {
       &__item {
@@ -87,6 +89,25 @@
 
     &__clear {
       text-transform: capitalize;
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .section-tasks {
+    height: 70vh;
+
+    &__tasks-box {
+      margin-top: -4rem;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      gap: 1rem;
+      font-size: 1.4rem;
+      color: $color-dark-grayish-blue;
     }
   }
 }
