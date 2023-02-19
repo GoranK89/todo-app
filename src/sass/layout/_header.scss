@@ -1,6 +1,5 @@
 .header {
   position: relative;
-  background-image: url("images/bg-desktop-dark.jpg");
   height: 40vh;
   background-size: cover;
   background-position: top;
@@ -41,8 +40,6 @@
       padding: 2.5rem 2rem;
       margin-bottom: 2rem;
       font-size: 2rem;
-      background-color: $color-very-dark-desaturated-blue;
-      color: $color-light-grayish-blue;
       font-family: inherit;
       border: none;
       outline: none;

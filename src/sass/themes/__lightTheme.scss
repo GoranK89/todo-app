@@ -1,7 +1,28 @@
-.background--light {
+.background-img--light {
   background-image: url("images/bg-desktop-light.jpg");
 }
-
-.bgc--light {
+.input--light {
   background-color: $color-very-light-gray;
+  color: $color-very-dark-blue;
+}
+
+.section-tasks--light {
+  background-color: $color-very-light-gray;
+}
+
+.section-tasks__tasks-box--light {
+  background-color: #fff;
+
+  .tasks--light {
+    color: $color-light-grayish-blue;
+
+    &__item {
+      border-bottom: 4px solid $color-very-light-gray;
+    }
+  }
+}
+
+.tasks__item-checkbox--light {
+  border: 1px solid $color-very-light-grayish-blue;
+  background-color: #fff;
 }

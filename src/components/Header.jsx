@@ -7,7 +7,7 @@ import IconSun from "/images/icon-sun.svg";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const themeDark = useSelector((state) => state.theme.dark);
+  const darkTheme = useSelector((state) => state.theme.dark);
 
   const addTaskHandler = (event) => {
     if (event.key === "Enter" && event.target.value) {
@@ -20,21 +20,28 @@ const Header = () => {
     dispatch(toggleTheme());
   };
 
+  const classInputTheme = darkTheme
+    ? "input input--dark"
+    : "input input--light";
+
+  const classBackgroundImg = darkTheme
+    ? "header background-img--dark"
+    : "header background-img--light";
+
   return (
-    <header className={themeDark ? "header" : "header background--light"}>
-      <div className="header__box width-80">
+    <header className={classBackgroundImg}>
+      <div className="header__box width-70">
         <div className="heading-wrapper">
           <h1 className="heading">Todo</h1>
           <img
-            src={themeDark ? IconSun : IconMoon}
+            src={darkTheme ? IconSun : IconMoon}
             onClick={themeHandler}
             className="theme-icon"
             alt="theme switcher icon"
           />
         </div>
-
         <input
-          className="input width-80"
+          className={classInputTheme}
           placeholder="Create a new todo..."
           onKeyDown={addTaskHandler}
         />

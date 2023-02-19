@@ -1,1 +1,29 @@
+.background-img--dark {
+  background-image: url("images/bg-desktop-dark.jpg");
+}
 
+.input--dark {
+  background-color: $color-very-dark-desaturated-blue;
+  color: $color-light-grayish-blue;
+}
+
+.section-tasks--dark {
+  background-color: $color-very-dark-blue;
+}
+
+.section-tasks__tasks-box--dark {
+  background-color: $color-very-dark-desaturated-blue;
+
+  .tasks--dark {
+    color: $color-light-grayish-blue;
+
+    &__item {
+      border-bottom: 2px solid $color-very-dark-grayish-blue;
+    }
+  }
+}
+
+.tasks__item-checkbox--dark {
+  border: 1px solid $color-dark-grayish-blue;
+  background-color: $color-very-dark-desaturated-blue;
+}

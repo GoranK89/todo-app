@@ -35,15 +35,27 @@ const Tasks = () => {
     }
   };
 
-  const tasksSectionTheme = darkTheme
-    ? "section-tasks"
-    : "section-tasks bgc--light";
+  const classTaskSectionTheme = darkTheme
+    ? "section-tasks section-tasks--dark"
+    : "section-tasks section-tasks--light";
+
+  const classTaskBoxTheme = darkTheme
+    ? "section-tasks__tasks-box section-tasks__tasks-box--dark width-70"
+    : "section-tasks__tasks-box section-tasks__tasks-box--light width-70";
+
+  const classTaskItemTheme = darkTheme
+    ? "tasks__item tasks--dark__item"
+    : "tasks__item tasks--light__item";
 
   const renderTasks = filterTasks().map((task) => (
-    <li className="tasks__item" key={task.id}>
+    <li className={classTaskItemTheme} key={task.id}>
       <div
         className={
-          task.completed ? "tasks__item-checkbox-done" : "tasks__item-checkbox"
+          task.completed
+            ? "tasks__item-checkbox-done"
+            : `tasks__item-checkbox tasks__item-checkbox${
+                darkTheme ? "--dark" : "--light"
+              }`
         }
         onClick={checkBoxHandler}
         id={task.id}
@@ -65,9 +77,9 @@ const Tasks = () => {
   ));
 
   return (
-    <section className={tasksSectionTheme}>
-      <div className="section-tasks__tasks-box width-80">
-        <ul className="tasks">{renderTasks}</ul>
+    <section className={classTaskSectionTheme}>
+      <div className={classTaskBoxTheme}>
+        <ul className="tasks tasks--dark">{renderTasks}</ul>
         <TasksControlls />
       </div>
     </section>

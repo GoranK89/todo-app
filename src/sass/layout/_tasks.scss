@@ -2,37 +2,29 @@
   position: relative;
   height: 60vh;
   font-size: 1.8rem;
-  background-color: $color-very-dark-blue;
 
   &__tasks-box {
     position: absolute;
     top: -10%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: $color-very-dark-desaturated-blue;
 
     .tasks {
-      color: $color-light-grayish-blue;
-
       &__item {
         cursor: pointer;
         display: flex;
         align-items: center;
         gap: 2rem;
         padding: 2rem;
-        border-bottom: 1px solid $color-very-dark-grayish-blue;
 
         &-checkbox {
           display: flex;
           align-items: center;
           justify-content: center;
-
           position: relative;
-          border: 1px solid $color-dark-grayish-blue;
           height: 24px;
           width: 24px;
           border-radius: 50%;
-          background-color: $color-very-dark-desaturated-blue;
 
           &:hover::after {
             content: "";
