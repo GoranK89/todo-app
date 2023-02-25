@@ -102,12 +102,17 @@
     }
 
     .controls {
-      display: flex;
-      justify-content: space-between;
-      padding: 1rem;
-      gap: 1rem;
-      font-size: 1.4rem;
-      color: $color-dark-grayish-blue;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+
+      &__task-filter {
+        .filter {
+          &--active {
+            border-bottom: 1px solid $color-bright-blue;
+          }
+        }
+      }
     }
   }
 }
