@@ -73,3 +73,24 @@
     }
   }
 }
+
+@media screen and (max-height: 850px) {
+  .header {
+    height: 33vh;
+
+    &__box {
+      margin-top: 3rem;
+
+      .heading-wrapper {
+        .heading {
+          font-size: 4rem;
+        }
+
+        .input {
+          padding: 2rem 1.5rem;
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}
